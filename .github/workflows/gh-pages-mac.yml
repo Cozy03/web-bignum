@@ -1,29 +1,33 @@
+# .github/workflows/gh-pages-mac.yml
+
 name: Build & Deploy to GitHub Pages (macOS)
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout code (with submodules)
+      - name: Checkout repository (with submodules)
         uses: actions/checkout@v3
         with:
           submodules: true
 
       - name: Install Emscripten SDK
-        uses: montudor/setup-emscripten@v1
+        uses: emscripten-core/emsdk@v3
         with:
           emsdk_version: latest
 
-      - name: Build BigNum WASM & JS
+      - name: Build BigNum WebAssembly & JS
         working-directory: ./web
         run: |
-          # your build script should invoke emcmake/emmake on the submodule
-          ../web/build_wasm.sh
+          # Make sure your build_wasm.sh is executable and in web/
+          chmod +x build_wasm.sh
+          ./build_wasm.sh
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
