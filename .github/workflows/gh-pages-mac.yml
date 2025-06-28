@@ -13,10 +13,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository (with submodules)
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: true
 
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v14
