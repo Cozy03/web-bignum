@@ -1,0 +1,32 @@
+name: Build & Deploy to GitHub Pages (macOS)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code (with submodules)
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Install Emscripten SDK
+        uses: montudor/setup-emscripten@v1
+        with:
+          emsdk_version: latest
+
+      - name: Build BigNum WASM & JS
+        working-directory: ./web
+        run: |
+          # your build script should invoke emcmake/emmake on the submodule
+          ../web/build_wasm.sh
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web
