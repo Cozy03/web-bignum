@@ -1,0 +1,3 @@
+[submodule "bignum-cpp"]
+	path = bignum-cpp
+	url = https://github.com/Cozy03/bignum-cpp.git
