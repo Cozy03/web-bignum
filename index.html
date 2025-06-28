@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BigNum Calculator Pro - Advanced Arbitrary Precision</title>
+    
+    <!-- Cool Mathematical Icon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNjY3ZWVhIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjNzY0YmEyIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2YwOTNmYiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNSIgZmlsbD0idXJsKCNncmFkaWVudCkiLz4KICA8Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMyIvPgogIAogIDwhLS0gTWF0aGVtYXRpY2FsIHN5bWJvbHMgLS0+CiAgPCEtLSBJbmZpbml0eSBzeW1ib2wgLS0+CiAgPHBhdGggZD0iTTkgMTZjMC0yIDItNCA0LTQgMyAwIDMgMiA2IDIgMyAwIDMtMiA2LTIgMiAwIDQgMiA0IDQgMCAyLTIgNC00IDQtMyAwLTMtMi02LTItMyAwLTMgMi02IDItMiAwLTQtMi00LTR6IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjkiLz4KICA8IS0tIFBsdXMgc3ltYm9sIC0tPgogIDxwYXRoIGQ9Ik0yMiA4djRoNHYyaC00djRoLTJWMTRoLTRWMTJoNFY4aDJ6IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjgiLz4KICA8IS0tIExvY2sgc3ltYm9sIGZvciBjcnlwdG8gLS0+CiAgPHJlY3QgeD0iNiIgeT0iMjIiIHdpZHRoPSI4IiBoZWlnaHQ9IjYiIHJ4PSIxIiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIwLjciLz4KICA8cGF0aCBkPSJNOCAyMnYtMmMwLTEgMS0yIDItMnMyIDEgMiAydjJoLTR6IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBvcGFjaXR5PSIwLjciLz4KICA8Y2lyY2xlIGN4PSIxMCIgY3k9IjI1IiByPSIxIiBmaWxsPSIjNjY3ZWVhIi8+Cjwvc3ZnPgo=">
+    
+    <!-- Fallback icon for older browsers -->
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAOkSURBVFiFtZdPaBNBFMafSWxqG1spWLQIFi+CF8WDBy8ePHjw4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw9ePHjx4sGLBw8="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow: hidden; /* Prevent body scroll */
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: 350px 1fr 320px;
+            grid-template-rows: 70px 1fr;
+            height: 100vh; /* Fixed viewport height */
+            gap: 15px;
+            padding: 15px;
+            overflow: hidden; /* Prevent container overflow */
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(10px);
+            min-height: 70px; /* Ensure fixed header height */
+        }
+
+        .header h1 {
+            color: #ffffff;
+            font-size: 1.8em;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff88;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+
+        .sidebar {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-height: calc(100vh - 100px); /* Constrain sidebar height */
+        }
+
+        .sidebar-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: #000;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+            flex-shrink: 0; /* Prevent header from shrinking */
+        }
+
+        .sidebar-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            min-height: 0; /* Allow flex item to shrink */
+        }
+
+        .main-terminal {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            max-height: calc(100vh - 100px); /* Constrain terminal height */
+        }
+
+        .terminal-header {
+            background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);
+            color: #000;
+            padding: 15px 25px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0; /* Prevent header from shrinking */
+            min-height: 60px; /* Ensure consistent header height */
+        }
+
+        .terminal-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0; /* Critical: allows flex item to shrink below content size */
+            overflow: hidden;
+        }
+
+        .terminal-output {
+            flex: 1;
+            padding: 20px;
+            background: #0a0a0a;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #00ff88;
+            min-height: 0; /* Critical: allows scrolling to work properly */
+            max-height: none; /* Remove any height restrictions */
+        }
+
+        .terminal-input {
+            background: #1a1a1a;
+            border-top: 1px solid #333;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0; /* Prevent input from shrinking */
+            min-height: 60px; /* Ensure input area is always visible */
+        }
+
+        .terminal-prompt {
+            color: #667eea;
+            font-weight: bold;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .terminal-input input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #e0e0e0;
+            padding: 8px 15px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            min-width: 0; /* Allow input to shrink if needed */
+        }
+
+        .terminal-input input:focus {
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .format-selector {
+            display: flex;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        .format-btn {
+            background: #333;
+            border: 1px solid #555;
+            border-radius: 6px;
+            color: #e0e0e0;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .format-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: #fff;
+        }
+
+        .format-btn:hover {
+            background: #555;
+        }
+
+        .operation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .op-btn {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 8px 12px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .op-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: #4facfe;
+            font-weight: bold;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .variable-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .variable-name {
+            color: #fa709a;
+            font-weight: bold;
+        }
+
+        .variable-value {
+            color: #00ff88;
+            font-size: 11px;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .performance-card {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .performance-metric {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 12px;
+        }
+
+        .metric-label {
+            color: #4facfe;
+        }
+
+        .metric-value {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .converter-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #333;
+        }
+
+        .converter-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #555;
+            border-radius: 6px;
+            color: #e0e0e0;
+            padding: 8px 10px;
+            font-family: inherit;
+            font-size: 12px;
+            margin: 5px 0;
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #667eea;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #4facfe;
+        }
+
+        .terminal-line {
+            margin: 3px 0;
+            word-wrap: break-word;
+            word-break: break-word; /* Ensure long numbers break properly */
+        }
+
+        .prompt-line {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .result-line {
+            color: #00ff88;
+            margin-left: 20px;
+        }
+
+        .error-line {
+            color: #ff6b6b;
+            margin-left: 20px;
+        }
+
+        .info-line {
+            color: #ffa726;
+            margin-left: 20px;
+        }
+
+        .highlight-number {
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .constants-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .constant-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #555;
+            border-radius: 6px;
+            color: #e0e0e0;
+            padding: 6px 8px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .constant-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #667eea;
+        }
+
+        .export-controls {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .mini-btn {
+            background: #333;
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: #e0e0e0;
+            padding: 4px 8px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mini-btn:hover {
+            background: #555;
+        }
+
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+
+        .badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        /* Enhanced scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 12px;
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 6px;
+            margin: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #667eea, #764ba2);
+            border-radius: 6px;
+            border: 2px solid #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #764ba2, #667eea);
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: #1a1a1a;
+        }
+
+        /* Firefox scrollbar */
+        .terminal-output, .sidebar-content {
+            scrollbar-width: thin;
+            scrollbar-color: #667eea #1a1a1a;
+        }
+
+        /* Responsive design improvements */
+        @media (max-width: 1200px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 70px 1fr 300px 300px;
+                overflow-y: auto;
+            }
+            
+            body {
+                overflow: auto;
+            }
+            
+            .sidebar, .main-terminal {
+                max-height: none;
+            }
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 1000;
+        }
+
+        .advanced-features {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* Ensure terminal content is properly contained */
+        .terminal-output * {
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🚀 BigNum Calculator Pro</h1>
+            <div class="status-indicator">
+                <div class="status-dot" id="status-dot"></div>
+                <span id="status-text">Loading WebAssembly...</span>
+            </div>
+        </div>
+
+        <!-- Left Sidebar - Operations -->
+        <div class="sidebar">
+            <div class="sidebar-header">📊 Operations & Tools</div>
+            <div class="sidebar-content">
+                <div class="section">
+                    <div class="section-title">Quick Operations</div>
+                    <div class="operation-grid">
+                        <button class="op-btn" onclick="insertCommand('123 + 456')">Add</button>
+                        <button class="op-btn" onclick="insertCommand('1000 - 234')">Subtract</button>
+                        <button class="op-btn" onclick="insertCommand('123 * 456')">Multiply</button>
+                        <button class="op-btn" onclick="insertCommand('1000 / 7')">Divide</button>
+                        <button class="op-btn" onclick="insertCommand('100 % 13')">Modulo</button>
+                        <button class="op-btn" onclick="insertCommand('2 ^ 100')">Power</button>
+                        <button class="op-btn" onclick="insertCommand('gcd(48, 18)')">GCD</button>
+                        <button class="op-btn" onclick="insertCommand('lcm(12, 18)')">LCM</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Cryptographic</div>
+                    <div class="operation-grid">
+                        <button class="op-btn" onclick="insertCommand('modpow(3, 100, 7)')">ModPow</button>
+                        <button class="op-btn" onclick="insertCommand('modinv(3, 11)')">ModInv</button>
+                        <button class="op-btn" onclick="insertCommand('isprime(97)')">IsPrime</button>
+                        <button class="op-btn" onclick="insertCommand('randprime(64)')">RandPrime</button>
+                        <button class="op-btn" onclick="insertCommand('random(256)')">Random</button>
+                        <button class="op-btn" onclick="insertCommand('extgcd(48, 18)')">ExtGCD</button>
+                        <button class="op-btn" onclick="insertCommand('nextprime(100)')">NextPrime</button>
+                        <button class="op-btn" onclick="insertCommand('factor(1001)')">Factor</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Mathematical Constants</div>
+                    <div class="constants-grid">
+                        <button class="constant-btn" onclick="insertCommand('2^256')">2^256</button>
+                        <button class="constant-btn" onclick="insertCommand('2^128')">2^128</button>
+                        <button class="constant-btn" onclick="insertCommand('2^64')">2^64</button>
+                        <button class="constant-btn" onclick="insertCommand('2^32')">2^32</button>
+                        <button class="constant-btn" onclick="insertCommand('0xFFFFFFFF')">Max32</button>
+                        <button class="constant-btn" onclick="insertCommand('0xFFFFFFFFFFFFFFFF')">Max64</button>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Number Base Converter</div>
+                    <div class="converter-section">
+                        <input type="text" class="converter-input" id="decimal-input" placeholder="Decimal (123456)"
+                            onchange="convertFromDecimal()">
+                        <input type="text" class="converter-input" id="hex-input" placeholder="Hex (0x1E240)"
+                            onchange="convertFromHex()">
+                        <input type="text" class="converter-input" id="binary-input"
+                            placeholder="Binary (11110001001000000)" onchange="convertFromBinary()">
+                        <input type="text" class="converter-input" id="octal-input" placeholder="Octal (361100)"
+                            onchange="convertFromOctal()">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Terminal -->
+        <div class="main-terminal">
+            <div class="terminal-header">
+                <span>💻 Interactive Calculator</span>
+                <div class="format-selector">
+                    <button class="format-btn active" id="format-dec" onclick="setOutputFormat('dec')">DEC</button>
+                    <button class="format-btn" id="format-hex" onclick="setOutputFormat('hex')">HEX</button>
+                    <button class="format-btn" id="format-both" onclick="setOutputFormat('both')">BOTH</button>
+                </div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-output" id="terminal-output">
+                    <div class="terminal-line info-line">🌟 Welcome to BigNum Calculator Pro!</div>
+                    <div class="terminal-line info-line">💡 Enter numbers in decimal (123) or hex (0x7B) format</div>
+                    <div class="terminal-line info-line">🚀 Try: 123 + 456, 0xFF * 0x10, gcd(48, 18), 2^100</div>
+                </div>
+                <div class="terminal-input">
+                    <span class="terminal-prompt">calc&gt;</span>
+                    <input type="text" id="command-input"
+                        placeholder="Enter expression (e.g., 123 + 456, 0xFF * 0x10, gcd(48, 18))" disabled>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar - Dashboard -->
+        <div class="sidebar">
+            <div class="sidebar-header">📈 Dashboard & Status</div>
+            <div class="sidebar-content">
+                <!-- Performance Monitor -->
+                <div class="section">
+                    <div class="section-title">Performance Monitor</div>
+                    <div class="performance-card">
+                        <div class="performance-metric">
+                            <span class="metric-label">WebAssembly:</span>
+                            <span class="metric-value" id="wasm-status">Loading...</span>
+                        </div>
+                        <div class="performance-metric">
+                            <span class="metric-label">Last Operation:</span>
+                            <span class="metric-value" id="last-op-time">-</span>
+                        </div>
+                        <div class="performance-metric">
+                            <span class="metric-label">Operations/sec:</span>
+                            <span class="metric-value" id="ops-per-sec">-</span>
+                        </div>
+                        <div class="performance-metric">
+                            <span class="metric-label">Memory Usage:</span>
+                            <span class="metric-value" id="memory-usage">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Variables -->
+                <div class="section">
+                    <div class="section-title">
+                        Variables <span class="badge" id="var-count">0</span>
+                    </div>
+                    <div id="variables-container">
+                        <div style="text-align: center; color: #666; font-style: italic; font-size: 12px;">
+                            No variables defined
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent History -->
+                <div class="section">
+                    <div class="section-title">
+                        Recent History <span class="badge" id="history-count">0</span>
+                    </div>
+                    <div id="history-container" style="max-height: 150px; overflow-y: auto;">
+                        <div style="text-align: center; color: #666; font-style: italic; font-size: 12px;">
+                            No commands executed
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Features -->
+                <div class="section">
+                    <div class="section-title">Advanced Features</div>
+                    <div class="advanced-features">
+                        <div class="operation-grid">
+                            <button class="op-btn" onclick="runBenchmarkFromButton()" title="Run performance benchmark">
+                                ⚡ Benchmark
+                            </button>
+                            <button class="op-btn" onclick="showHelpFromButton()" title="Show help and examples">
+                                ❓ Help
+                            </button>
+                            <button class="op-btn" onclick="safeClearAll()" title="Clear terminal and variables">
+                                🗑️ Clear All
+                            </button>
+                            <button class="op-btn" onclick="exportSession()" title="Export session to file">
+                                💾 Export
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="section">
+                    <div class="section-title">Quick Actions</div>
+                    <div class="export-controls">
+                        <button class="mini-btn" onclick="safeGenerateRSADemo()">RSA Demo</button>
+                        <button class="mini-btn" onclick="safePrimalityDemo()">Prime Test</button>
+                        <button class="mini-btn" onclick="safeFactorDemo()">Factoring</button>
+                        <button class="mini-btn" onclick="safeCryptoDemo()">Crypto</button>
+                        <button class="mini-btn" onclick="runQuickTest()" title="Test basic functionality">🧪 Test</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load WebAssembly -->
+    <script src="bignum.js"></script>
+    <script>
+        // Application State
+        let BigNumWasm = null;
+        let isReady = false;
+        let variables = {};
+        let commandHistory = [];
+        let resultHistory = [];
+        let historyIndex = -1;
+        let outputFormat = 'dec'; // 'dec', 'hex', 'both'
+        let operationTimes = [];
+
+        // DOM Elements
+        const terminalOutput = document.getElementById('terminal-output');
+        const commandInput = document.getElementById('command-input');
+        const statusText = document.getElementById('status-text');
+        const statusDot = document.getElementById('status-dot');
+
+        // Initialize WebAssembly
+        async function initWebAssembly() {
+            try {
+                log("🔄 Initializing WebAssembly module...", 'info');
+                BigNumWasm = await BigNumModule();
+                isReady = true;
+
+                statusText.textContent = "Ready - High Performance Mode";
+                statusDot.style.background = "#00ff88";
+                document.getElementById('wasm-status').textContent = "Active";
+
+                commandInput.disabled = false;
+                commandInput.placeholder = "Enter expression (e.g., 123 + 456, 0xFF * 0x10)";
+                commandInput.focus();
+
+                log("✅ WebAssembly loaded successfully!", 'result');
+                log("🎯 Calculator ready for high-precision arithmetic!", 'info');
+                log("💡 Click the ❓ Help button or 🧪 Test button to get started!", 'info');
+                log("🚀 Try the demo buttons in the right panel for examples!", 'info');
+
+                // Run initialization test
+                runInitializationTest();
+
+            } catch (error) {
+                log(`❌ Failed to load WebAssembly: ${error.message}`, 'error');
+                statusText.textContent = "Error - JavaScript Fallback";
+                statusDot.style.background = "#ff6b6b";
+                document.getElementById('wasm-status').textContent = "Failed";
+            }
+        }
+
+        function runInitializationTest() {
+            try {
+                const start = performance.now();
+                const a = new BigNumWasm.BigNum("123456789abcdef");
+                const b = new BigNumWasm.BigNum("fedcba987654321");
+                const result = a.add(b);
+                const end = performance.now();
+
+                const time = (end - start).toFixed(3);
+                log(`🧪 System test: Large number addition completed in ${time}ms`, 'info');
+                updatePerformanceMetrics(end - start);
+
+            } catch (error) {
+                log(`⚠️ System test failed: ${error.message}`, 'error');
+            }
+        }
+
+        // Number Conversion Utilities
+        function parseNumber(input) {
+            input = input.trim();
+
+            // Handle hex (0x prefix)
+            if (input.toLowerCase().startsWith('0x')) {
+                return {
+                    type: 'hex',
+                    value: input.substring(2),
+                    original: input
+                };
+            }
+
+            // Handle binary (0b prefix)
+            if (input.toLowerCase().startsWith('0b')) {
+                const binary = input.substring(2);
+                const hex = parseInt(binary, 2).toString(16);
+                return {
+                    type: 'binary',
+                    value: hex,
+                    original: input
+                };
+            }
+
+            // Handle octal (0o prefix)
+            if (input.toLowerCase().startsWith('0o')) {
+                const octal = input.substring(2);
+                const hex = parseInt(octal, 8).toString(16);
+                return {
+                    type: 'octal',
+                    value: hex,
+                    original: input
+                };
+            }
+
+            // Handle decimal (no prefix)
+            if (/^\d+$/.test(input)) {
+                try {
+                    // For large numbers, use BigInt
+                    const decimal = BigInt(input);
+                    const hex = decimal.toString(16);
+                    return {
+                        type: 'decimal',
+                        value: hex,
+                        original: input
+                    };
+                } catch (error) {
+                    throw new Error(`Invalid decimal number: ${input}`);
+                }
+            }
+
+            // Handle pure hex (no prefix, contains a-f)
+            if (/^[0-9a-f]+$/i.test(input)) {
+                return {
+                    type: 'hex',
+                    value: input.toLowerCase(),
+                    original: input
+                };
+            }
+
+            throw new Error(`Invalid number format: ${input}`);
+        }
+
+        function createBigNum(input) {
+            const parsed = parseNumber(input);
+            return new BigNumWasm.BigNum(parsed.value);
+        }
+
+        // Helper function to create BigNum from various input types
+        function createBigNumSafe(input) {
+            if (typeof input === 'string') {
+                // Handle simple decimal numbers
+                if (/^\d+$/.test(input)) {
+                    const decimal = BigInt(input);
+                    const hex = decimal.toString(16);
+                    return new BigNumWasm.BigNum(hex);
+                }
+                return createBigNum(input);
+            } else if (typeof input === 'number') {
+                const hex = input.toString(16);
+                return new BigNumWasm.BigNum(hex);
+            } else {
+                return createBigNum(input.toString());
+            }
+        }
+
+        function formatResult(bignum, format = outputFormat) {
+            const hex = bignum.toHexString();
+
+            try {
+                // Convert to decimal for display
+                const decimal = BigInt('0x' + hex).toString();
+
+                switch (format) {
+                    case 'dec':
+                        return decimal;
+                    case 'hex':
+                        return '0x' + hex;
+                    case 'both':
+                        return `${decimal} (0x${hex})`;
+                    default:
+                        return decimal;
+                }
+            } catch (error) {
+                // For very large numbers that exceed BigInt, just show hex
+                return '0x' + hex;
+            }
+        }
+
+        // Command Processing
+        function executeCommand() {
+            const command = commandInput.value.trim();
+            if (!command || !isReady) return;
+
+            // Add to history
+            commandHistory.unshift(command);
+            if (commandHistory.length > 50) commandHistory.pop();
+            historyIndex = -1;
+
+            // Display command
+            log(`calc> ${command}`, 'prompt');
+
+            const startTime = performance.now();
+
+            try {
+                const result = evaluateCommand(command);
+                const endTime = performance.now();
+
+                if (result !== undefined) {
+                    log(result, 'result');
+
+                    // Update performance metrics
+                    updatePerformanceMetrics(endTime - startTime);
+
+                    // Add to result history
+                    resultHistory.unshift({command, result, time: new Date()});
+                    if (resultHistory.length > 20) resultHistory.pop();
+                    updateHistoryDisplay();
+                }
+            } catch (error) {
+                log(`Error: ${error.message}`, 'error');
+            }
+
+            commandInput.value = '';
+            updateVariableDisplay();
+            
+            // Ensure terminal output scrolls to bottom
+            scrollToBottom();
+        }
+
+        // Enhanced scrolling function
+        function scrollToBottom() {
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        }
+
+        function evaluateCommand(command) {
+            // Handle special commands first
+            if (command.toLowerCase() === 'help') return showHelp();
+            if (command.toLowerCase() === 'clear') {clearTerminal(); return;}
+            if (command.toLowerCase() === 'vars') return listVariables();
+            if (command.toLowerCase() === 'history') return showHistory();
+            if (command.toLowerCase().startsWith('benchmark')) return runBenchmark();
+
+            // Handle ExtGCD as a special case (returns multiple values)
+            const extgcdMatch = command.match(/^extgcd\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)$/i);
+            if (extgcdMatch) {
+                try {
+                    const numA = createBigNumSafe(extgcdMatch[1].trim());
+                    const numB = createBigNumSafe(extgcdMatch[2].trim());
+                    const result = numA.extendedGcd(numB);
+
+                    // Format the three results nicely
+                    const gcd = new BigNumWasm.BigNum(result.gcd);
+                    const s = new BigNumWasm.BigNum(result.s);
+                    const t = new BigNumWasm.BigNum(result.t);
+
+                    return `Extended GCD Results:\n  GCD: ${formatResult(gcd)}\n  S: ${formatResult(s)}\n  T: ${formatResult(t)}\n  Verification: (${extgcdMatch[1].trim()}) × (${formatResult(s)}) + (${extgcdMatch[2].trim()}) × (${formatResult(t)}) = ${formatResult(gcd)}`;
+                } catch (error) {
+                    throw new Error(`ExtGCD error: ${error.message}`);
+                }
+            }
+
+            // Handle variable assignment
+            const assignMatch = command.match(/^(\w+)\s*=\s*(.+)$/);
+            if (assignMatch) {
+                const [, varName, expression] = assignMatch;
+                const result = evaluateExpression(expression);
+                
+                // Only store BigNum objects as variables
+                if (result && typeof result.toHexString === 'function') {
+                    variables[varName] = result;
+                    updateVariableDisplay();
+                    return `${varName} = ${formatResult(result)}`;
+                } else {
+                    // For non-BigNum results (like booleans), just return the result
+                    return `${varName} = ${result}`;
+                }
+            }
+
+            // Evaluate expression
+            const result = evaluateExpression(command);
+            return formatResult(result);
+        }
+
+        function processFunctions(expr) {
+            // Process functions one by one to avoid conflicts
+            let processed = expr;
+
+            // Note: ExtGCD is handled separately in evaluateCommand, so we don't process it here
+
+            // NextPrime function (implement using JavaScript since it's not in C++ bindings)
+            processed = processed.replace(/nextprime\s*\(\s*([^)]+)\s*\)/gi, (match, num) => {
+                try {
+                    const number = createBigNumSafe(num.trim());
+                    const nextPrime = findNextPrime(number);
+                    return `0x${nextPrime.toHexString()}`;
+                } catch (error) {
+                    throw new Error(`NextPrime error: ${error.message}`);
+                }
+            });
+
+            // GCD function
+            processed = processed.replace(/gcd\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/gi, (match, a, b) => {
+                try {
+                    const numA = createBigNumSafe(a.trim());
+                    const numB = createBigNumSafe(b.trim());
+                    const result = numA.gcd(numB);
+                    return `0x${result.toHexString()}`;
+                } catch (error) {
+                    throw new Error(`GCD error: ${error.message}`);
+                }
+            });
+
+            // LCM function
+            processed = processed.replace(/lcm\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/gi, (match, a, b) => {
+                try {
+                    const numA = createBigNumSafe(a.trim());
+                    const numB = createBigNumSafe(b.trim());
+                    const gcd = numA.gcd(numB);
+                    const result = numA.multiply(numB).divide(gcd);
+                    return `0x${result.toHexString()}`;
+                } catch (error) {
+                    throw new Error(`LCM error: ${error.message}`);
+                }
+            });
+
+            // ModPow function
+            processed = processed.replace(/modpow\s*\(\s*([^,]+)\s*,\s*([^,]+)\s*,\s*([^)]+)\s*\)/gi, (match, base, exp, mod) => {
+                try {
+                    const numBase = createBigNumSafe(base.trim());
+                    const numExp = createBigNumSafe(exp.trim());
+                    const numMod = createBigNumSafe(mod.trim());
+                    const result = numBase.modPow(numExp, numMod);
+                    return `0x${result.toHexString()}`;
+                } catch (error) {
+                    throw new Error(`ModPow error: ${error.message}`);
+                }
+            });
+
+            // ModInverse function
+            processed = processed.replace(/modinv\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/gi, (match, a, mod) => {
+                try {
+                    const numA = createBigNumSafe(a.trim());
+                    const numMod = createBigNumSafe(mod.trim());
+                    const result = numA.modInverse(numMod);
+                    return `0x${result.toHexString()}`;
+                } catch (error) {
+                    throw new Error(`ModInverse error: ${error.message}`);
+                }
+            });
+
+            // IsPrime function - returns boolean, handle specially
+            processed = processed.replace(/isprime\s*\(\s*([^)]+)\s*\)/gi, (match, num) => {
+                try {
+                    const number = createBigNumSafe(num.trim());
+                    const isPrime = number.isProbablePrime(20);
+                    return isPrime ? 'true' : 'false';
+                } catch (error) {
+                    throw new Error(`IsPrime error: ${error.message}`);
+                }
+            });
+
+            // Factor function (simple trial division for demonstration)
+            processed = processed.replace(/factor\s*\(\s*([^)]+)\s*\)/gi, (match, num) => {
+                try {
+                    const number = createBigNumSafe(num.trim());
+                    const factors = findFactors(number);
+                    return `"${factors}"`; // Wrap in quotes to treat as string literal
+                } catch (error) {
+                    throw new Error(`Factor error: ${error.message}`);
+                }
+            });
+
+            // Random functions
+            processed = processed.replace(/random\s*\(\s*([^)]+)\s*\)/gi, (match, bits) => {
+                try {
+                    const bitCount = parseInt(bits.trim());
+                    if (isNaN(bitCount) || bitCount <= 0) {
+                        throw new Error("Invalid bit count");
+                    }
+                    const result = BigNumWasm.BigNum.random(bitCount);
+                    return `0x${result.toHexString()}`;
+                } catch (error) {
+                    throw new Error(`Random error: ${error.message}`);
+                }
+            });
+
+            processed = processed.replace(/randprime\s*\(\s*([^)]+)\s*\)/gi, (match, bits) => {
+                try {
+                    const bitCount = parseInt(bits.trim());
+                    if (isNaN(bitCount) || bitCount <= 0) {
+                        throw new Error("Invalid bit count");
+                    }
+                    const result = BigNumWasm.BigNum.randomPrime(bitCount);
+                    return `0x${result.toHexString()}`;
+                } catch (error) {
+                    throw new Error(`RandPrime error: ${error.message}`);
+                }
+            });
+
+            // Bitwise functions that return numbers - need to be converted to BigNum format
+            processed = processed.replace(/bitlength\s*\(\s*([^)]+)\s*\)/gi, (match, num) => {
+                try {
+                    const number = createBigNumSafe(num.trim());
+                    const length = number.bitLength();
+                    // Convert to hex so it can be used in further calculations
+                    return `0x${length.toString(16)}`;
+                } catch (error) {
+                    throw new Error(`BitLength error: ${error.message}`);
+                }
+            });
+
+            // Boolean functions - handle specially
+            processed = processed.replace(/iseven\s*\(\s*([^)]+)\s*\)/gi, (match, num) => {
+                try {
+                    const number = createBigNumSafe(num.trim());
+                    return number.isEven() ? 'true' : 'false';
+                } catch (error) {
+                    throw new Error(`IsEven error: ${error.message}`);
+                }
+            });
+
+            processed = processed.replace(/isodd\s*\(\s*([^)]+)\s*\)/gi, (match, num) => {
+                try {
+                    const number = createBigNumSafe(num.trim());
+                    return number.isOdd() ? 'true' : 'false';
+                } catch (error) {
+                    throw new Error(`IsOdd error: ${error.message}`);
+                }
+            });
+
+            return processed;
+        }
+
+        // Updated evaluateArithmetic to handle string literals and boolean values
+        function evaluateArithmetic(expr) {
+            // Handle string literals (wrapped in quotes) - just return the content
+            if (expr.startsWith('"') && expr.endsWith('"')) {
+                return expr.slice(1, -1); // Remove quotes and return as string
+            }
+
+            // Handle boolean values
+            if (expr === 'true' || expr === 'false') {
+                return expr === 'true';
+            }
+
+            // Handle pure numbers that are already decimal strings (from bitlength etc.)
+            if (/^\d+$/.test(expr.trim())) {
+                try {
+                    return createBigNumSafe(expr.trim());
+                } catch (error) {
+                    return parseInt(expr.trim());
+                }
+            }
+
+            // Handle parentheses first
+            while (expr.includes('(')) {
+                expr = expr.replace(/\(([^()]+)\)/g, (match, inner) => {
+                    const result = evaluateArithmetic(inner);
+                    if (typeof result === 'string') {
+                        return `"${result}"`; // Wrap strings in quotes
+                    } else if (typeof result === 'boolean') {
+                        return result.toString();
+                    } else if (result && typeof result.toHexString === 'function') {
+                        return `0x${result.toHexString()}`;
+                    } else {
+                        return result.toString();
+                    }
+                });
+            }
+
+            // Handle exponentiation (^)
+            const powerMatch = expr.match(/((?:0x)?[0-9a-f]+)\s*\^\s*((?:0x)?[0-9a-f]+)/i);
+            if (powerMatch) {
+                const base = createBigNumSafe(powerMatch[1]);
+                const exp = createBigNumSafe(powerMatch[2]);
+                // Implement power using repeated multiplication for simplicity
+                let result = BigNumWasm.BigNum.one();
+                const expHex = exp.toHexString();
+                const expBigInt = BigInt('0x' + expHex);
+                const baseCopy = createBigNumSafe(powerMatch[1]);
+
+                for (let i = 0n; i < expBigInt && i < 10000n; i++) { // Limit to prevent browser freeze
+                    result = result.multiply(baseCopy);
+                }
+                return result;
+            }
+
+            // Handle multiplication and division
+            const mulDivMatch = expr.match(/((?:0x)?[0-9a-f]+)\s*([*\/])\s*((?:0x)?[0-9a-f]+)/i);
+            if (mulDivMatch) {
+                const left = createBigNumSafe(mulDivMatch[1]);
+                const op = mulDivMatch[2];
+                const right = createBigNumSafe(mulDivMatch[3]);
+
+                if (op === '*') return left.multiply(right);
+                if (op === '/') return left.divide(right);
+            }
+
+            // Handle addition and subtraction
+            const addSubMatch = expr.match(/((?:0x)?[0-9a-f]+)\s*([+\-])\s*((?:0x)?[0-9a-f]+)/i);
+            if (addSubMatch) {
+                const left = createBigNumSafe(addSubMatch[1]);
+                const op = addSubMatch[2];
+                const right = createBigNumSafe(addSubMatch[3]);
+
+                if (op === '+') return left.add(right);
+                if (op === '-') return left.subtract(right);
+            }
+
+            // Handle modulo
+            const modMatch = expr.match(/((?:0x)?[0-9a-f]+)\s*%\s*((?:0x)?[0-9a-f]+)/i);
+            if (modMatch) {
+                const left = createBigNumSafe(modMatch[1]);
+                const right = createBigNumSafe(modMatch[2]);
+                return left.modulo(right);
+            }
+
+            // Single number or string
+            const trimmed = expr.trim();
+            if (trimmed.startsWith('"') && trimmed.endsWith('"')) {
+                return trimmed.slice(1, -1); // Remove quotes
+            }
+
+            // Try to create a BigNum, fallback to string if it fails
+            try {
+                return createBigNumSafe(trimmed);
+            } catch (error) {
+                return trimmed; // Return as string if it can't be parsed as a number
+            }
+        }
+
+        // Update formatResult to handle non-BigNum results
+        function formatResult(result, format = outputFormat) {
+            // Handle string results (like factor output, boolean values)
+            if (typeof result === 'string') {
+                return result;
+            }
+
+            // Handle boolean results
+            if (typeof result === 'boolean') {
+                return result.toString();
+            }
+
+            // Handle number results
+            if (typeof result === 'number') {
+                return result.toString();
+            }
+
+            // Handle null/undefined
+            if (result == null) {
+                return 'undefined';
+            }
+
+            // Handle BigNum results
+            if (result && typeof result.toHexString === 'function') {
+                const hex = result.toHexString();
+
+                try {
+                    // Convert to decimal for display
+                    const decimal = BigInt('0x' + hex).toString();
+
+                    switch (format) {
+                        case 'dec':
+                            return decimal;
+                        case 'hex':
+                            return '0x' + hex;
+                        case 'both':
+                            return `${decimal} (0x${hex})`;
+                        default:
+                            return decimal;
+                    }
+                } catch (error) {
+                    // For very large numbers that exceed BigInt, just show hex
+                    return '0x' + hex;
+                }
+            }
+
+            // Fallback for unknown types
+            return String(result);
+        }
+
+        function evaluateExpression(expr) {
+            // Replace variables first, but be careful about function names
+            let processed = expr;
+
+            // Sort variables by length (longest first) to avoid partial replacements
+            const sortedVars = Object.keys(variables).sort((a, b) => b.length - a.length);
+
+            for (const varName of sortedVars) {
+                // Use word boundaries to avoid replacing parts of function names
+                const regex = new RegExp(`\\b${varName}\\b`, 'g');
+                const value = variables[varName];
+                if (value && typeof value.toHexString === 'function') {
+                    processed = processed.replace(regex, `0x${value.toHexString()}`);
+                }
+            }
+
+            // Handle function calls
+            processed = processFunctions(processed);
+
+            // Handle arithmetic expressions
+            return evaluateArithmetic(processed);
+        }
+
+        // Helper function to find next prime
+        function findNextPrime(bignum) {
+            let candidate = bignum.isEven() ? bignum.add(BigNumWasm.BigNum.one()) : bignum.add(BigNumWasm.BigNum.two());
+            let attempts = 0;
+            const maxAttempts = 10000; // Prevent infinite loops
+
+            while (attempts < maxAttempts) {
+                if (candidate.isProbablePrime(20)) {
+                    return candidate;
+                }
+                candidate = candidate.add(BigNumWasm.BigNum.two());
+                attempts++;
+            }
+
+            throw new Error("Could not find next prime within reasonable attempts");
+        }
+
+        // Helper function for simple factorization (for small numbers)
+        function findFactors(bignum) {
+            // For demonstration, just try small factors
+            const smallPrimes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+            const factors = [];
+            let remaining = bignum;
+
+            for (const prime of smallPrimes) {
+                const primeBN = createBigNumSafe(prime.toString());
+                while (remaining.modulo(primeBN).isZero() && !remaining.isOne()) {
+                    factors.push(prime);
+                    remaining = remaining.divide(primeBN);
+                }
+                if (remaining.isOne()) break;
+            }
+
+            if (factors.length === 0) {
+                return "No small factors found (number may be prime or have large factors)";
+            }
+
+            const factorStr = factors.join(" × ");
+            return remaining.isOne() ? factorStr : `${factorStr} × ${formatResult(remaining)}`;
+        }
+
+        // UI Functions
+        function log(message, type = '') {
+            const line = document.createElement('div');
+            line.className = `terminal-line ${type}-line`;
+
+            if (message.includes('\n')) {
+                line.innerHTML = message.split('\n').map(l => `<div>${l}</div>`).join('');
+            } else {
+                line.textContent = message;
+            }
+
+            terminalOutput.appendChild(line);
+            scrollToBottom();
+        }
+
+        function insertCommand(command) {
+            if (isReady) {
+                commandInput.value = command;
+                commandInput.focus();
+            }
+        }
+
+        function setOutputFormat(format) {
+            outputFormat = format;
+            document.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`format-${format}`).classList.add('active');
+            log(`Output format changed to: ${format.toUpperCase()}`, 'info');
+        }
+
+        function updatePerformanceMetrics(timeMs) {
+            operationTimes.push(timeMs);
+            if (operationTimes.length > 100) operationTimes.shift();
+
+            document.getElementById('last-op-time').textContent = `${timeMs.toFixed(3)}ms`;
+
+            const avgTime = operationTimes.reduce((a, b) => a + b, 0) / operationTimes.length;
+            const opsPerSec = Math.round(1000 / avgTime);
+            document.getElementById('ops-per-sec').textContent = opsPerSec;
+
+            // Estimate memory usage
+            const memoryMB = (Object.keys(variables).length * 100 + commandHistory.length * 50) / 1024;
+            document.getElementById('memory-usage').textContent = `${memoryMB.toFixed(1)}KB`;
+        }
+
+        function updateVariableDisplay() {
+            const container = document.getElementById('variables-container');
+            const count = Object.keys(variables).length;
+
+            document.getElementById('var-count').textContent = count;
+
+            if (count === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #666; font-style: italic; font-size: 12px;">No variables defined</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            for (const [name, value] of Object.entries(variables)) {
+                const item = document.createElement('div');
+                item.className = 'variable-item';
+                const hexValue = value.toHexString();
+                const displayValue = formatResult(value, 'both');
+                item.innerHTML = `
+                    <span class="variable-name">${name}</span>
+                    <span class="variable-value" title="${displayValue}">
+                        ${displayValue.length > 20 ? displayValue.substring(0, 20) + '...' : displayValue}
+                    </span>
+                `;
+                item.onclick = () => insertCommand(name);
+                container.appendChild(item);
+            }
+        }
+
+        function updateHistoryDisplay() {
+            const container = document.getElementById('history-container');
+            const count = resultHistory.length;
+
+            document.getElementById('history-count').textContent = count;
+
+            if (count === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #666; font-style: italic; font-size: 12px;">No commands executed</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            resultHistory.slice(0, 5).forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <div style="color: #667eea; font-weight: bold;">${item.command}</div>
+                    <div style="color: #00ff88; font-size: 11px;">${item.result.length > 30 ? item.result.substring(0, 30) + '...' : item.result}</div>
+                `;
+                historyItem.onclick = () => insertCommand(item.command);
+                container.appendChild(historyItem);
+            });
+        }
+
+        // Base Conversion Functions
+        function convertFromDecimal() {
+            const decimal = document.getElementById('decimal-input').value;
+            if (!decimal) return;
+
+            try {
+                const bigint = BigInt(decimal);
+                document.getElementById('hex-input').value = '0x' + bigint.toString(16);
+                document.getElementById('binary-input').value = '0b' + bigint.toString(2);
+                document.getElementById('octal-input').value = '0o' + bigint.toString(8);
+            } catch (error) {
+                log(`Conversion error: ${error.message}`, 'error');
+            }
+        }
+
+        function convertFromHex() {
+            const hex = document.getElementById('hex-input').value.replace(/^0x/, '');
+            if (!hex) return;
+
+            try {
+                const bigint = BigInt('0x' + hex);
+                document.getElementById('decimal-input').value = bigint.toString();
+                document.getElementById('binary-input').value = '0b' + bigint.toString(2);
+                document.getElementById('octal-input').value = '0o' + bigint.toString(8);
+            } catch (error) {
+                log(`Conversion error: ${error.message}`, 'error');
+            }
+        }
+
+        function convertFromBinary() {
+            const binary = document.getElementById('binary-input').value.replace(/^0b/, '');
+            if (!binary) return;
+
+            try {
+                const bigint = BigInt('0b' + binary);
+                document.getElementById('decimal-input').value = bigint.toString();
+                document.getElementById('hex-input').value = '0x' + bigint.toString(16);
+                document.getElementById('octal-input').value = '0o' + bigint.toString(8);
+            } catch (error) {
+                log(`Conversion error: ${error.message}`, 'error');
+            }
+        }
+
+        function convertFromOctal() {
+            const octal = document.getElementById('octal-input').value.replace(/^0o/, '');
+            if (!octal) return;
+
+            try {
+                const bigint = BigInt('0o' + octal);
+                document.getElementById('decimal-input').value = bigint.toString();
+                document.getElementById('hex-input').value = '0x' + bigint.toString(16);
+                document.getElementById('binary-input').value = '0b' + bigint.toString(2);
+            } catch (error) {
+                log(`Conversion error: ${error.message}`, 'error');
+            }
+        }
+
+        // Demo Functions
+        function generateRSADemo() {
+            log("\n🔐 RSA Key Generation Demo Starting...", 'info');
+            log("This will demonstrate the complete RSA key generation process.", 'info');
+
+            // Execute commands automatically with delays
+            const commands = [
+                'p = randprime(64)',
+                'q = randprime(64)',
+                'n = p * q',
+                'phi = (p-1) * (q-1)',
+                'e = 65537',
+                'd = modinv(e, phi)'
+            ];
+
+            executeCommandSequence(commands, 800); // 800ms delay between commands
+        }
+
+        function primalityDemo() {
+            log("\n🔢 Primality Testing Demo Starting...", 'info');
+            log("Testing various numbers for primality...", 'info');
+
+            const commands = [
+                'isprime(97)',
+                'isprime(98)',
+                'isprime(101)',
+                'isprime(1009)',
+                'isprime(1010)',
+                'isprime(982451653)',
+                'n = randprime(32)',
+                'isprime(n)',
+                'isprime(n + 2)'
+            ];
+
+            executeCommandSequence(commands, 600);
+        }
+
+        function factorDemo() {
+            log("\n🧮 Factorization & GCD Demo Starting...", 'info');
+            log("Demonstrating factorization and GCD operations...", 'info');
+
+            const commands = [
+                'gcd(1001, 1365)',
+                'gcd(12345, 67890)',
+                'gcd(48, 18)',
+                'lcm(12, 18)',
+                'lcm(15, 25)',
+                'factor(15)',
+                'factor(21)',
+                'factor(1001)'
+            ];
+
+            executeCommandSequence(commands, 700);
+        }
+
+        function cryptoDemo() {
+            log("\n🛡️ Cryptographic Operations Demo Starting...", 'info');
+            log("Showcasing advanced cryptographic functions...", 'info');
+
+            const commands = [
+                'a = random(128)',
+                'b = randprime(64)',
+                'modpow(2, 100, 7)',
+                'modinv(3, 11)',
+                'extgcd(48, 18)',
+                'c = modinv(a, b)',
+                '(a * c) % b'
+            ];
+
+            executeCommandSequence(commands, 900);
+        }
+
+        // Helper function to execute a sequence of commands with delays
+        function executeCommandSequence(commands, delayMs = 500) {
+            commands.forEach((command, index) => {
+                setTimeout(() => {
+                    // Insert the command and execute it automatically
+                    commandInput.value = command;
+                    log(`\n🤖 Auto-executing: ${command}`, 'info');
+                    executeCommand();
+                }, index * delayMs);
+            });
+        }
+
+        // Additional utility functions for the demos
+
+        function listVariables() {
+            const varNames = Object.keys(variables);
+            if (varNames.length === 0) {
+                return "No variables currently defined.";
+            }
+
+            let result = `Variables (${varNames.length}):\n`;
+            for (const [name, value] of Object.entries(variables)) {
+                const displayValue = formatResult(value);
+                const truncated = displayValue.length > 50 ? displayValue.substring(0, 50) + '...' : displayValue;
+                result += `  ${name} = ${truncated}\n`;
+            }
+            return result;
+        }
+
+        function showHistory() {
+            if (resultHistory.length === 0) {
+                return "No command history available.";
+            }
+
+            let result = `Recent Commands (${resultHistory.length}):\n`;
+            resultHistory.slice(0, 10).forEach((item, index) => {
+                result += `  ${index + 1}. ${item.command}\n`;
+            });
+            return result;
+        }
+
+        // Enhanced benchmark function with more details
+        function runBenchmark() {
+            if (!isReady) return "WebAssembly not ready";
+
+            const tests = [
+                {
+                    name: '64-bit Addition',
+                    iterations: 1000,
+                    operation: () => {
+                        const a = BigNumWasm.BigNum.random(64);
+                        const b = BigNumWasm.BigNum.random(64);
+                        return a.add(b);
+                    }
+                },
+                {
+                    name: '128-bit Multiplication',
+                    iterations: 500,
+                    operation: () => {
+                        const a = BigNumWasm.BigNum.random(128);
+                        const b = BigNumWasm.BigNum.random(128);
+                        return a.multiply(b);
+                    }
+                },
+                {
+                    name: '256-bit Division',
+                    iterations: 200,
+                    operation: () => {
+                        const a = BigNumWasm.BigNum.random(256);
+                        const b = BigNumWasm.BigNum.random(128);
+                        return a.divide(b);
+                    }
+                },
+                {
+                    name: '64-bit GCD',
+                    iterations: 100,
+                    operation: () => {
+                        const a = BigNumWasm.BigNum.random(64);
+                        const b = BigNumWasm.BigNum.random(64);
+                        return a.gcd(b);
+                    }
+                },
+                {
+                    name: '32-bit Primality Test',
+                    iterations: 50,
+                    operation: () => {
+                        const n = BigNumWasm.BigNum.random(32);
+                        return n.isProbablePrime(5);
+                    }
+                }
+            ];
+
+            let results = '📊 Performance Benchmark Results:\n';
+            let totalOperations = 0;
+            let totalTime = 0;
+
+            tests.forEach((test, index) => {
+                log(`⏳ Running test ${index + 1}/${tests.length}: ${test.name}...`, 'info');
+                
+                const start = performance.now();
+
+                try {
+                    for (let i = 0; i < test.iterations; i++) {
+                        test.operation();
+                    }
+
+                    const end = performance.now();
+                    const testTime = end - start;
+                    const avgTime = (testTime / test.iterations).toFixed(3);
+                    const opsPerSec = Math.round(test.iterations / testTime * 1000);
+
+                    results += `  ✅ ${test.name}: ${avgTime}ms avg (${opsPerSec} ops/s)\n`;
+
+                    totalOperations += test.iterations;
+                    totalTime += testTime;
+                } catch (error) {
+                    results += `  ❌ ${test.name}: FAILED (${error.message})\n`;
+                    log(`❌ Test failed: ${test.name} - ${error.message}`, 'error');
+                }
+            });
+
+            const overallOpsPerSec = Math.round(totalOperations / totalTime * 1000);
+            results += `\n🏆 Overall Performance: ${overallOpsPerSec} ops/s across ${totalOperations} operations`;
+            results += `\n⏱️ Total benchmark time: ${(totalTime / 1000).toFixed(2)} seconds`;
+            results += `\n🔧 WebAssembly Engine: Active and Optimized`;
+
+            return results;
+        }
+
+        // Button click wrapper for benchmark
+        function runBenchmarkFromButton() {
+            if (!isReady) {
+                log("❌ WebAssembly not ready yet. Please wait for initialization to complete.", 'error');
+                return;
+            }
+
+            // Find the benchmark button and show loading state
+            const benchmarkButton = document.querySelector('button[onclick="runBenchmarkFromButton()"]');
+            const originalText = benchmarkButton.innerHTML;
+            
+            try {
+                // Show loading state
+                benchmarkButton.innerHTML = '⏳ Running...';
+                benchmarkButton.disabled = true;
+                benchmarkButton.style.opacity = '0.6';
+                
+                log("🚀 Starting comprehensive performance benchmark...", 'info');
+                
+                // Use setTimeout to allow UI to update before running benchmark
+                setTimeout(() => {
+                    try {
+                        const result = runBenchmark();
+                        log(result, 'result');
+                        
+                        // Update performance metrics
+                        updatePerformanceMetrics(1.0);
+                        
+                        log("✨ Benchmark completed successfully!", 'info');
+                        log("📈 Performance metrics updated in the dashboard!", 'info');
+                    } catch (error) {
+                        log(`❌ Benchmark failed: ${error.message}`, 'error');
+                    } finally {
+                        // Restore button state
+                        benchmarkButton.innerHTML = originalText;
+                        benchmarkButton.disabled = false;
+                        benchmarkButton.style.opacity = '1';
+                    }
+                }, 100);
+                
+            } catch (error) {
+                log(`❌ Benchmark setup failed: ${error.message}`, 'error');
+                // Restore button state on error
+                benchmarkButton.innerHTML = originalText;
+                benchmarkButton.disabled = false;
+                benchmarkButton.style.opacity = '1';
+            }
+        }
+
+        // Enhanced help function with more examples
+        function showHelp() {
+            const help = `
+🚀 BigNum Calculator Pro - Complete Help Guide
+============================================
+
+📊 NUMBER FORMATS:
+  Decimal:  123, 456, 999999 (no prefix)
+  Hex:      0x7B, 0xFF, 0xDEADBEEF (0x prefix)
+  Binary:   0b1111011, 0b10101010 (0b prefix)
+  Octal:    0o173, 0o755 (0o prefix)
+
+🧮 ARITHMETIC OPERATIONS:
+  123 + 456         Addition
+  1000 - 234        Subtraction
+  123 * 456         Multiplication
+  1000 / 7          Division
+  100 % 13          Modulo
+  2 ^ 100           Exponentiation
+
+🔐 CRYPTOGRAPHIC FUNCTIONS:
+  gcd(48, 18)               Greatest Common Divisor
+  lcm(12, 18)               Least Common Multiple
+  modpow(3, 100, 7)         Modular Exponentiation
+  modinv(3, 11)             Modular Inverse
+  extgcd(48, 18)            Extended GCD (shows s, t values)
+  isprime(97)               Primality Test (Miller-Rabin)
+  nextprime(100)            Find next prime after number
+
+🎲 GENERATION FUNCTIONS:
+  random(256)               Random number (256 bits)
+  randprime(64)             Random prime (64 bits)
+
+🔍 ANALYSIS FUNCTIONS:
+  factor(1001)              Simple factorization
+  bitlength(0x1FF)          Get bit length
+  iseven(100)               Test if even
+  isodd(101)                Test if odd
+
+📝 VARIABLES & WORKSPACE:
+  p = randprime(512)        Assign to variable
+  n = p * q                 Use variables in expressions
+  vars                      List all variables
+  history                   Show command history
+
+⚙️ SYSTEM COMMANDS:
+  clear                     Clear terminal
+  help                      Show this help
+  benchmark                 Run performance test
+
+🎯 QUICK EXAMPLES:
+  RSA Key Gen: p=randprime(512); q=randprime(512); n=p*q
+  Crypto Test: a=random(128); b=randprime(64); c=modinv(a,b)
+  Prime Check: isprime(2^127-1)
+  Large Calc:  2^256 + 2^255
+
+🎨 OUTPUT FORMATS:
+  Click DEC/HEX/BOTH buttons to change number display format
+
+💡 TIP: Use the base converter and quick action buttons for faster workflows!
+            `;
+            return help;
+        }
+
+        // Button click wrapper for help
+        function showHelpFromButton() {
+            try {
+                const helpText = showHelp();
+                log(helpText, 'info');
+                log("💡 For interactive help, type 'help' in the command line!", 'info');
+                log("🎯 Try these quick tests:", 'info');
+                log("  • Type: 123 + 456", 'info');
+                log("  • Type: gcd(48, 18)", 'info');
+                log("  • Type: isprime(97)", 'info');
+                log("  • Type: 2^10", 'info');
+                log("  • Click the demo buttons in the right panel!", 'info');
+            } catch (error) {
+                log(`❌ Help display failed: ${error.message}`, 'error');
+            }
+        }
+
+        // Quick functionality test
+        function runQuickTest() {
+            log("🧪 Running Quick Functionality Test...", 'info');
+            
+            const tests = [
+                { cmd: "123 + 456", expected: "579" },
+                { cmd: "0xFF * 0x10", expected: "4080" },
+                { cmd: "gcd(48, 18)", expected: "6" },
+                { cmd: "2^10", expected: "1024" }
+            ];
+            
+            let passed = 0;
+            tests.forEach(test => {
+                try {
+                    const result = evaluateExpression(test.cmd);
+                    const resultStr = formatResult(result);
+                    if (resultStr === test.expected) {
+                        log(`✅ ${test.cmd} = ${resultStr} ✓`, 'result');
+                        passed++;
+                    } else {
+                        log(`❌ ${test.cmd} = ${resultStr} (expected ${test.expected})`, 'error');
+                    }
+                } catch (error) {
+                    log(`❌ ${test.cmd} failed: ${error.message}`, 'error');
+                }
+            });
+            
+            log(`🎯 Test Results: ${passed}/${tests.length} tests passed`, passed === tests.length ? 'result' : 'error');
+            
+            if (passed === tests.length) {
+                log("🎉 All systems operational! Calculator is ready for use.", 'result');
+            } else {
+                log("⚠️ Some issues detected. Check the errors above.", 'error');
+            }
+        }
+
+        // Add error handling wrapper for all demo functions
+        function runDemo(demoFunction, demoName) {
+            try {
+                demoFunction();
+            } catch (error) {
+                log(`❌ ${demoName} failed: ${error.message}`, 'error');
+            }
+        }
+
+        // Update the onclick handlers to use error handling
+        function safeGenerateRSADemo() {runDemo(generateRSADemo, "RSA Demo");}
+        function safePrimalityDemo() {runDemo(primalityDemo, "Prime Test Demo");}
+        function safeFactorDemo() {runDemo(factorDemo, "Factoring Demo");}
+        function safeCryptoDemo() {runDemo(cryptoDemo, "Crypto Demo");}
+        
+        function exportSession() {
+            const session = {
+                commands: commandHistory,
+                results: resultHistory,
+                variables: Object.fromEntries(
+                    Object.entries(variables).map(([k, v]) => [k, v.toHexString()])
+                ),
+                timestamp: new Date().toISOString()
+            };
+
+            const blob = new Blob([JSON.stringify(session, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `bignum_session_${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            log("Session exported to file", 'info');
+        }
+
+        // Fixed Clear Functions
+        function clearTerminal() {
+            try {
+                const terminalOutput = document.getElementById('terminal-output');
+                if (terminalOutput) {
+                    terminalOutput.innerHTML = '';
+                    log("Terminal cleared", 'info');
+                } else {
+                    console.error('Terminal output element not found');
+                }
+            } catch (error) {
+                console.error('Error clearing terminal:', error);
+            }
+        }
+
+        function clearAll() {
+            try {
+                // Clear terminal first
+                const terminalOutput = document.getElementById('terminal-output');
+                if (terminalOutput) {
+                    terminalOutput.innerHTML = '';
+                }
+
+                // Clear all data
+                variables = {};
+                commandHistory = [];
+                resultHistory = [];
+                historyIndex = -1;
+                operationTimes = [];
+
+                // Update displays
+                updateVariableDisplay();
+                updateHistoryDisplay();
+
+                // Reset performance metrics
+                document.getElementById('var-count').textContent = '0';
+                document.getElementById('history-count').textContent = '0';
+                document.getElementById('last-op-time').textContent = '-';
+                document.getElementById('ops-per-sec').textContent = '-';
+                document.getElementById('memory-usage').textContent = '-';
+
+                // Show success message
+                log("🗑️ All data cleared successfully!", 'info');
+                log("Calculator reset to initial state.", 'info');
+
+            } catch (error) {
+                console.error('Error in clearAll:', error);
+                alert('Error clearing data: ' + error.message);
+            }
+        }
+
+        function safeClearAll() {
+            if (confirm('Are you sure you want to clear all data? This will remove all variables, history, and terminal output.')) {
+                clearAll();
+            }
+        }
+
+        // Event Handlers
+        commandInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                executeCommand();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    commandInput.value = commandHistory[historyIndex];
+                }
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    commandInput.value = commandHistory[historyIndex];
+                } else if (historyIndex === 0) {
+                    historyIndex = -1;
+                    commandInput.value = '';
+                }
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('load', initWebAssembly);
+    </script>
+</body>
+
+</html>
