@@ -29,6 +29,15 @@ cd "$(dirname "$0")"
 echo "📂 Current directory: $(pwd)"
 echo "🔍 Checking source files..."
 
+# Debug: Show what's actually in the repository
+echo "🐛 DEBUG: Repository structure:"
+ls -la ../
+echo "🐛 DEBUG: Looking for bignum-cpp directory:"
+ls -la ../bignum-cpp/ 2>/dev/null || echo "bignum-cpp directory not found"
+echo "🐛 DEBUG: Looking for source files:"
+ls -la ../bignum-cpp/src/ 2>/dev/null || echo "src directory not found"
+ls -la ../bignum-cpp/include/ 2>/dev/null || echo "include directory not found"
+
 if [ ! -f "bignum_bindings.cpp" ]; then
     echo "❌ bignum_bindings.cpp not found!"
     exit 1
