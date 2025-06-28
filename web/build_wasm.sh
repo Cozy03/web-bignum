@@ -6,8 +6,21 @@ echo "🚀 Building BigNum WebAssembly module..."
 # Check if Emscripten is available
 if ! command -v emcc &> /dev/null; then
     echo "❌ Emscripten not found!"
-    echo "💡 Run: source /tmp/emsdk/emsdk_env.sh"
-    exit 1
+    
+    # Try different common locations
+    if [ -n "$EMSDK" ] && [ -f "$EMSDK/emsdk_env.sh" ]; then
+        echo "💡 Sourcing from EMSDK environment: $EMSDK"
+        source "$EMSDK/emsdk_env.sh"
+    elif [ -f "/tmp/emsdk/emsdk_env.sh" ]; then
+        echo "💡 Run: source /tmp/emsdk/emsdk_env.sh"
+    else
+        echo "💡 Install Emscripten SDK and ensure it's in your PATH"
+    fi
+    
+    # Check again after potential sourcing
+    if ! command -v emcc &> /dev/null; then
+        exit 1
+    fi
 fi
 
 # Ensure we're in the right directory
@@ -33,6 +46,10 @@ fi
 
 echo "✅ All source files found"
 
+# Clean previous builds
+echo "🧹 Cleaning previous builds..."
+rm -f bignum.js bignum.wasm bignum.d.ts
+
 # Compile to WebAssembly
 echo "🔨 Compiling to WebAssembly..."
 
@@ -48,7 +65,10 @@ emcc ../bignum-cpp/src/bignum.cpp bignum_bindings.cpp \
     -s ASSERTIONS=0 \
     -s DISABLE_EXCEPTION_CATCHING=0 \
     -s FILESYSTEM=0 \
+    -s ENVIRONMENT='web,worker' \
+    -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' \
     --bind \
+    -std=c++17 \
     -o bignum.js
 
 if [ $? -eq 0 ]; then

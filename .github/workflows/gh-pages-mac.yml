@@ -1,9 +1,10 @@
-# .github/workflows/gh-pages-mac.yml
-
 name: Build & Deploy to GitHub Pages (macOS)
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
@@ -13,24 +14,40 @@ jobs:
 
     steps:
       - name: Checkout repository (with submodules)
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
 
-      - name: Install Emscripten SDK
-        uses: emscripten-core/emsdk@v3
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
         with:
-          emsdk_version: latest
+          version: 3.1.51
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Verify Emscripten installation
+        run: |
+          source $EMSDK/emsdk_env.sh
+          emcc --version
+          em++ --version
 
       - name: Build BigNum WebAssembly & JS
         working-directory: ./web
         run: |
-          # Make sure your build_wasm.sh is executable and in web/
+          # Source Emscripten environment
+          source $EMSDK/emsdk_env.sh
+          # Make sure your build_wasm.sh is executable
           chmod +x build_wasm.sh
           ./build_wasm.sh
 
+      - name: List built files
+        working-directory: ./web
+        run: |
+          ls -la *.wasm *.js || echo "No wasm/js files found"
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./web
+          force_orphan: true
